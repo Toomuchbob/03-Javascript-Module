@@ -28,16 +28,28 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
+//array of letters
+var letArr = [a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z];
+//array of special characters
+var specArr = ["\!", "\"", "\#", "\$", "\%", "\&", "\'", "\(", "\)", "\*", "\+", "\,", "\-", "\.", 
+  "\/", "\:", "\;", "\<", "\=", "\>", "\?", "\@", "\[", "\\", "\]", "\^", "\_", "\`", "\{", "\|", "\}", "\~"];
+
 //prompt user to enter password length between 8-128
 var passwordLength = prompt("Please enter the desired length of the password \(between 8-128 characters\)");
+
 //parse value to integer
 passwordLength = parseInt(passwordLength);
+
 //verify integrity of entered value
 while (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength)) {
   passwordLength = prompt("Incorrect value entered. Please enter a value between 8 and 128.")
 }
 
+//confirm users choice of characters
 var passwordLowercase = confirm("Would you like to include lowercase characters in your password?");
 var passwordUppercase = confirm("Would you like to include uppercase characters in your password?");
 var passwordNumeric = confirm("Would you like to include numeric characters in your password?");
 var passwordSpecial = confirm("Would you like to include special characters in your password?");
+
+//generate a number between 0-9
+var nums = Math.floor(Math.random() * 10);
