@@ -46,10 +46,35 @@ while (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength)) {
 }
 
 //confirm users choice of characters
-var passwordLowercase = confirm("Would you like to include lowercase characters in your password?");
-var passwordUppercase = confirm("Would you like to include uppercase characters in your password?");
-var passwordNumeric = confirm("Would you like to include numeric characters in your password?");
-var passwordSpecial = confirm("Would you like to include special characters in your password?");
+var pwdL = confirm("Would you like to include lowercase characters in your password?");
+var pwdU = confirm("Would you like to include uppercase characters in your password?");
+var pwdN = confirm("Would you like to include numeric characters in your password?");
+var pwdS = confirm("Would you like to include special characters in your password?");
+var userChoices = [];
+console.log(pwdL);
 
 //generate a number between 0-9
 var nums = Math.floor(Math.random() * 10);
+
+//create an array that includes all user choices
+if (pwdL) {
+  userChoices.push('pwdL');
+}
+if (pwdU) {
+  userChoices.push('pwdU');
+}
+if (pwdN) {
+  userChoices.push('pwdN');
+}
+if (pwdS) {
+  userChoices.push('pwdS');
+}
+
+// for (let i = 0; i < passwordLength.length; i++) {
+//   for (let j = 0; j < userChoice.length; j++) {
+//     var charChoice = Math.floor(Math.random() * userChoice.length);
+//     while (userchoice[charChoice] === 0) {
+//       var charChoice = Math.floor(Math.random() * userChoice.length);
+//     }    
+//   }
+// }
