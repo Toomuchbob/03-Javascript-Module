@@ -10,26 +10,13 @@ function writePassword() {
 
 }
 
-// THEN I am presented with a series of prompts for password criteria
-// WHEN prompted for password criteria
-// THEN I select which criteria to include in the password
-// WHEN prompted for the length of the password
-// THEN I choose a length of at least 8 characters and no more than 128 characters
-// WHEN prompted for character types to include in the password
-// THEN I choose lowercase, uppercase, numeric, and/or special characters
-// WHEN I answer each prompt
-// THEN my input should be validated and at least one character type should be selected
-// WHEN all prompts are answered
-// THEN a password is generated that matches the selected criteria
-// WHEN the password is generated
-// THEN the password is either displayed in an alert or written to the page
-
-
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
 //array of letters
 var letArr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+//array of uppercase letters
+var upArr = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 //array of special characters
 var specArr = ["\!", "\"", "\#", "\$", "\%", "\&", "\'", "\(", "\)", "\*", "\+", "\,", "\-", "\.", 
   "\/", "\:", "\;", "\<", "\=", "\>", "\?", "\@", "\[", "\\", "\]", "\^", "\_", "\`", "\{", "\|", "\}", "\~"];
@@ -51,10 +38,9 @@ var pwdU = confirm("Would you like to include uppercase characters in your passw
 var pwdN = confirm("Would you like to include numeric characters in your password?");
 var pwdS = confirm("Would you like to include special characters in your password?");
 var userChoices = [];
-console.log(pwdL);
 
-//generate a number between 0-9
-var nums = Math.floor(Math.random() * 10);
+//variable for final choice added to password
+var choice = [];
 
 //create an array that includes all user choices
 if (pwdL) {
@@ -69,12 +55,29 @@ if (pwdN) {
 if (pwdS) {
   userChoices.push('pwdS');
 }
+console.log(userChoices);
 
-// for (let i = 0; i < passwordLength.length; i++) {
-//   for (let j = 0; j < userChoice.length; j++) {
-//     var charChoice = Math.floor(Math.random() * userChoice.length);
-//     while (userchoice[charChoice] === 0) {
-//       var charChoice = Math.floor(Math.random() * userChoice.length);
-//     }    
-//   }
-// }
+//iterate through the chosen password length
+for (var i = 0; i < passwordLength; i++) {
+  //get next character type for password
+  var randomChoice = Math.floor(Math.random() * userChoices.length);
+  //find type and push to choices array
+  switch (userChoices[randomChoice]) {
+    case 'pwdL':
+      choice.push(letArr[Math.floor(Math.random() * letArr.length)]);
+      break;
+    case 'pwdU':
+      choice.push(upArr[Math.floor(Math.random() * upArr.length)]);
+      break;
+    case 'pwdN':
+      choice.push(Math.floor(Math.random() * 10));
+      break;
+    case 'pwdS':
+      console.log(" special character incoming");
+      choice.push(specArr[Math.floor(Math.random() * specArr.length)]);
+      break;
+    default:
+      choice.push(Math.floor(Math.random() * 10));
+      break;
+  }
+}
